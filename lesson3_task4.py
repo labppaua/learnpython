@@ -14,6 +14,8 @@ def my_func(x, y):
         z = x * z
         i = i + 1
     return 1 / z
+
+
 peremen_x = input("Введите значение X: ")
 peremen_y = input("Введите отрицательное значение Y: ")
 print("ваш результат равен =", my_func(peremen_x, peremen_y,))
