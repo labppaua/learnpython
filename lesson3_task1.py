@@ -5,14 +5,14 @@
 print("Вы стартанули программу делитель.")
 
 
-def delenie(delim, delit):
+def delenie(a, b):
     """Производит деление двух переменных и делает проверку деления на ноль"""
-    if delit == 0:
+    if b == 0:
         return "на 0 делить нельзя!"
     else:
-        return delim / delit
+        return a / b
 
 
 delim = float(input("введите делимое: "))
 delit = float(input("введите делитель: "))
-print(delenie(delim,delit))
+print(delenie(delim, delit))
