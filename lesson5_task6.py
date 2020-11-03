@@ -5,7 +5,7 @@
 import re
 
 subj = {}
-with open('file_task6.txt', 'r') as in_file:
+with open("file_task6.txt", "r") as in_file:
     for line in in_file:
         (key, val) = line.split()[0].replace(":", ""), sum([int(i) for i in re.findall(r"\d+", line)])
 # в кортеж получаем название предмета, убирав после ":"  - line.split()[0].replace(":", "")
