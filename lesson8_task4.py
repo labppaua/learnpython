@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-# Урок 8 задание 4
+# Урок 8 задание 4,5,6
 # Начните работу над проектом «Склад оргтехники». Создайте класс, описывающий склад. А также класс «Оргтехника», который будет базовым для классов-наследников. Эти классы — конкретные типы оргтехники (принтер, сканер, ксерокс). В базовом классе определить параметры, общие для приведенных типов. В классах-наследниках реализовать параметры, уникальные для каждого типа оргтехники.
+# Продолжить работу над первым заданием. Разработать методы, отвечающие за приём оргтехники на склад и передачу в определенное подразделение компании. Для хранения данных о наименовании и количестве единиц оргтехники, а также других данных, можно использовать любую подходящую структуру, например словарь.
+# Продолжить работу над вторым заданием. Реализуйте механизм валидации вводимых пользователем данных. Например, для указания количества принтеров, отправленных на склад, нельзя использовать строковый тип данных.
 
 
 class Sklad:
@@ -12,7 +14,11 @@ class Sklad:
         self.departments = ["HR", "IT"]
 
     def add_to_sklad(self, device, pos, polka):
-        self.items[device.serial_number] = {"info": device, "polka": polka, "pos": pos}
+        dev = self.items.get(device.serial_number)
+        if dev is None:
+            self.items[device.serial_number] = {"info": device, "polka": polka, "pos": pos}
+        else:
+            print("Device with S/N {} is already on sklad".format(device.serial_number))
 
     def remove_from_sklad(self, device, department):
         dev = self.items.get(device.serial_number)
@@ -33,6 +39,8 @@ class Sklad:
                                                                                              dev_info.serial_number,
                                                                                              dev_info.date_of))
             print("Polka: {}\nPos:   {}\n".format(dev.get("polka"), dev.get("pos")))
+
+
 class Orgtechnika:
     def __init__(self, type_of: str, model: str, serial_number: str, date_of: str, department = ""):
         self._type_of = type_of
@@ -85,3 +93,6 @@ if __name__ == '__main__':
     p = Printer("Brother", "111", "11-11-2020", "IT", False)
     sklad.add_to_sklad(p,1,1)
     sklad.print_dev_info(p)
+    sklad.add_to_sklad(p,1,1)
+
+# для отслеживания уникальности - сделано отслеживание серийного номера, поэтому реализована проверка при добавлении на склад. Из--за этого органичения - добавление нескольких штук на склад невозмжно
